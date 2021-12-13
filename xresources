@@ -1,0 +1,125 @@
+! default resource settings for st
+
+!st.font:             DroidSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true
+
+! font decoration
+!st.disablebold:      0
+!st.disableitalic:    0
+!st.disableroman:     0
+
+! window border width
+!st.borderpx:         0
+
+! render lines/blocks characters without using the font for perfect alignment between cells
+!st.boxdraw:          1
+!st.boxdraw_bold:     0
+!st.boxdraw_braille:  0
+
+! Kerning / character bounding-box multipliers
+!st.cwscale:          1.0
+!st.chscale:          1.0
+
+! draw latency range in ms
+!st.minlatency:       8
+!st.manlatency:       33
+
+! blinking timeout (set to 0 to disable blinking) for the terminal blinking
+!st.blinktimeout:     800
+
+! bell volume. It must be a value between -100 and 100. Use 0 for disabling
+!st.bellvolume:       0
+
+!st.shell:            /bin/sh
+
+! use to set $TERM
+!st.termname:         st-256color
+
+! st.transparent rate, 0.0 ~ 1.0
+!st.alpha:            1.0
+
+! mouse scroll speed
+!st.mousescrollrate:  5
+
+!st.tabspaces:        4
+
+! style of cursor
+! 0: blinking block
+! 1: blinking block (default)
+! 2: steady block ("â–ˆ")
+! 3: blinking underline
+! 4: steady underline ("_")
+! 5: blinking bar
+! 6: steady bar ("|")
+! 7: blinking st cursor
+! 8: steady st cursor
+!
+!st.cursorstyle:      5
+
+! geometry
+! 0: pixel geometry
+! 1: cell geometry
+!st.geometry:         0
+
+! window size, when using pixel geometry
+!st.width:            1024
+!st.height:           576
+
+! window size, when using cell geometry
+!st.cols:             116
+!st.rows:             32
+
+! undercurl style
+! 0: Curly:
+!  _   _   _   _
+! ( ) ( ) ( ) ( )
+!   (_) (_) (_) (_)
+! 
+! 1: Spiky:
+! /\  /\   /\	/\
+!   \/  \/	  \/
+! 
+! 2: Capped:
+!  _     _     _
+! / \   / \   / \
+!    \_/   \_/
+! 
+!st.undercurl_style:  1
+
+! colors: the value is color map index
+!st.foreground:       7
+!st.background:       258 
+!st.cursor:           7
+!st.reversecursor:    8
+!st.highlightColor:   257
+
+! st color map
+st.color256:     #000000
+st.color257:     #3A3F4B
+st.color258:     #282C34
+
+! color theme from https://github.com/janoamaral/Xresources-themes.git
+! Original theme https://github.com/nathanbuchar/atom-one-dark-terminal
+! Negro y gris
+*.color0:        #1E2127
+*.color8:        #5C6370
+! Rojos
+*.color1:        #E06C75
+*.color9:        #E06C75
+! Verde
+*.color2:        #98C379
+*.color10:       #98C379
+! Amarillo
+*.color3:        #D19A66
+*.color11:       #D19A66
+! Azul
+*.color4:        #61AFEF
+*.color12:       #61AFEF
+! Magenta
+*.color5:        #C678DD
+*.color13:       #C678DD
+! Cyan
+*.color6:        #56B6C2
+*.color14:       #56B6C2
+! Blanco
+*.color7:        #ABB2BF
+*.color15:       #FFFFFF
