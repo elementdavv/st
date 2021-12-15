@@ -12,7 +12,7 @@ In order to build st you need the Xlib header files.
 Edit config.mk to match your local setup (st is installed into the ~/.local by default).
 
 Afterwards enter the following command to build and install st:
-```
+```bash
 git clone https://github.com/elementdavv/st.git
 cd st
 make clean install
@@ -20,19 +20,19 @@ make clean install
 
 ### Running st
 If you did not install st with make clean install, you must compile the st terminfo entry with the following command:
-```
+```bash
 tic -sx st.info
 ```
 See the man page for additional details.
 
 ### Configutaion
 st use xresources for customization. Edit `xresources` to suit your needs then run following commands to apply.
-```
+```bash
 xrdb -merge /path/to/xresources
 ```
 
 st icon can be customized. Run following command to create new `icon.h` file then recompile project.
-```
+```bash
 ./netwmicon.sh /path/to/youricon.png > icon.h
 ```
 

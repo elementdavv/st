@@ -124,6 +124,7 @@ unsigned int tabspaces = 4;
 
 /* bg opacity */
 float alpha = 1.0;
+int alpha_correction = 0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -234,7 +235,7 @@ static unsigned int defaultattr = 11;
 // Active style
 static unsigned int undercurl_style = UNDERCURL_SPIKY;
 
-unsigned int mousescrollrate= 5;
+int mousescrollrate= 5;
 
 /*
  * Force mouse select/shortcuts while mask is active (when MODE_MOUSE is set).
@@ -288,6 +289,7 @@ ResourcePref resources[] = {
 		{ "boxdraw_bold", INTEGER, &boxdraw_bold },
 		{ "boxdraw_braille",INTEGER, &boxdraw_braille },
 		{ "alpha",        FLOAT,   &alpha },
+		{ "alpha_correction", INTEGER, &alpha_correction},
 		{ "cursorstyle",  INTEGER, &cursorstyle },
 		{ "geometry",     INTEGER, &geometry },
 		{ "cols",         INTEGER, &cols },

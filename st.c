@@ -1153,7 +1153,7 @@ kscrolldown(const Arg* a)
 
 	if (n < 0)
 		n = term.row + n;
-	if (n > 0)
+	else if (n > 0)
 		n = mousescrollrate;
 
 	if (n > term.scr)
@@ -1173,7 +1173,7 @@ kscrollup(const Arg* a)
 
 	if (n < 0)
 		n = term.row + n;
-	if (n > 0)
+	else if (n > 0)
 		n = mousescrollrate;
 
 	if (term.scr <= HISTSIZE-n) {

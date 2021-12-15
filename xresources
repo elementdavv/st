@@ -36,6 +36,7 @@
 
 ! st.transparent rate, 0.0 ~ 1.0
 !st.alpha:            1.0
+!st.alpha_correction  0
 
 ! mouse scroll speed
 !st.mousescrollrate:  5

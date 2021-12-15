@@ -69,7 +69,7 @@ typedef struct {
 	ushort mode;      /* attribute flags */
 	uint32_t fg;      /* foreground  */
 	uint32_t bg;      /* background  */
-	int ustyle;	  /* underline style */
+	int ustyle;	      /* underline style */
 	int ucolor[3];    /* underline color */
 } Glyph;
 
@@ -146,4 +146,7 @@ extern unsigned int defaultfg;
 extern unsigned int defaultbg;
 extern float alpha;
 extern int boxdraw, boxdraw_bold, boxdraw_braille;
-extern unsigned int mousescrollrate;
+extern int mousescrollrate;
+extern int disablebold;
+extern int disableitalic;
+extern int disableroman;

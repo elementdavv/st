@@ -284,11 +284,6 @@ static char *usedfont = NULL;
 static double usedfontsize = 0;
 static double defaultfontsize = 0;
 
-/* declared in config.h */
-extern int disablebold;
-extern int disableitalic;
-extern int disableroman;
-
 static char *opt_alpha = NULL;
 static char *opt_class = NULL;
 static char **opt_cmd  = NULL;
@@ -854,9 +849,26 @@ xloadcols(void)
 	/* set alpha value of bg color */
 	if (opt_alpha)
 		alpha = strtof(opt_alpha, NULL);
+
 	dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * alpha);
-	dc.col[defaultbg].pixel &= 0x00FFFFFF;
-	dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
+
+	if (alpha_correction) {
+		// else: X11 uses premultiplied alpha values (i.e. 50% opacity white is
+		// 0x7f7f7f7f, not 0x7fffffff), so multiply color by alpha
+		int scaled_alpha = ((int)(alpha * 255.0));
+		dc.col[defaultbg].color.red   = (dc.col[defaultbg].color.red   * scaled_alpha) / 0xff;
+		dc.col[defaultbg].color.green = (dc.col[defaultbg].color.green * scaled_alpha) / 0xff;
+		dc.col[defaultbg].color.blue  = (dc.col[defaultbg].color.blue  * scaled_alpha) / 0xff;
+		dc.col[defaultbg].pixel =
+		((((dc.col[defaultbg].pixel & 0x00ff00ff) * scaled_alpha) / 0xff) & 0x00ff00ff) |
+		((((dc.col[defaultbg].pixel & 0x0000ff00) * scaled_alpha) / 0xff) & 0x0000ff00) |
+		scaled_alpha << 24;
+	}
+	else {
+		dc.col[defaultbg].pixel &= 0x00FFFFFF;
+		dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
+	}
+
 	loaded = 1;
 }
 
@@ -1141,7 +1153,7 @@ xloadsparefonts(void)
 	
 		if (!pattern)
 			die("can't open spare font %s\n", *fp);
-	   		
+
 		if (defaultfontsize > 0) {
 			sizeshift = usedfontsize - defaultfontsize;
 			if (sizeshift != 0 &&
@@ -1447,6 +1459,7 @@ xmakeglyphfontspecs(XftGlyphFontSpec *specs, const Glyph *glyphs, int len, int x
 			/* Lookup character index with default font. */
 			glyphidx = XftCharIndex(xw.dpy, font->match, rune);
 		}
+
 		if (glyphidx) {
 			specs[numspecs].font = font->match;
 			specs[numspecs].glyph = glyphidx;
