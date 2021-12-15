@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "DroidSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true";
+static char *font = "DejaVuSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
 	"Fira Code Retina:pixelsize=12:antialias=true:autohint=true",
