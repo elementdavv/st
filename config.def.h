@@ -1,5 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
+#ifndef MYCONFIG_H
+#define MYCONFIG_H
+
 /*
  * appearance
  *
@@ -8,7 +11,7 @@
 static char *font = "DejaVuSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-	"Fira Code Retina:pixelsize=12:antialias=true:autohint=true",
+	"Fira Code Retina:pixelsize=14:antialias=true:autohint=true",
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
 };
 
@@ -608,3 +611,5 @@ static char ascii_printable[] =
 	" !\"#$%&'()*+,-./0123456789:;<=>?"
 	"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
 	"`abcdefghijklmnopqrstuvwxyz{|}~";
+
+#endif

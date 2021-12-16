@@ -1,5 +1,10 @@
 /* See LICENSE for license details. */
 
+#include "st.h"
+
+#ifndef WIN_H
+#define WIN_H
+
 enum win_mode {
 	MODE_VISIBLE     = 1 << 0,
 	MODE_FOCUSED     = 1 << 1,
@@ -41,3 +46,5 @@ int xstartdraw(void);
 void toggle_winmode(int);
 void keyboard_select(const Arg *);
 void xximspot(int, int);
+
+#endif

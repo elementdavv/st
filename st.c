@@ -17,9 +17,7 @@
 #include <unistd.h>
 #include <wchar.h>
 #include <X11/keysym.h>
-#include <X11/X.h>
 
-#include "st.h"
 #include "win.h"
 
 #if   defined(__linux)

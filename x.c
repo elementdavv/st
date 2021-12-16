@@ -19,7 +19,6 @@
 char *argv0;
 #include "arg.h"
 #include "icon.h"
-#include "st.h"
 #include "win.h"
 #include "hb.h"
 

@@ -2,6 +2,10 @@
 
 #include <stdint.h>
 #include <sys/types.h>
+#include <X11/X.h>
+
+#ifndef ST_H
+#define ST_H
 
 /* macros */
 #define MIN(a, b)		((a) < (b) ? (a) : (b))
@@ -149,3 +153,6 @@ extern int boxdraw, boxdraw_bold, boxdraw_braille;
 extern int mousescrollrate;
 extern int disablebold;
 extern int disableitalic;
+extern int wcwidth (wchar_t __c) __THROW;
+
+#endif
