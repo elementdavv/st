@@ -3,9 +3,8 @@
 !st.font:             DejaVuSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true
 
 ! font decoration
-!st.disablebold:      0
-!st.disableitalic:    0
-!st.disableroman:     0
+st.disablebold:      0
+st.disableitalic:    0
 
 ! window border width
 !st.borderpx:         0

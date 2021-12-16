@@ -149,4 +149,3 @@ extern int boxdraw, boxdraw_bold, boxdraw_braille;
 extern int mousescrollrate;
 extern int disablebold;
 extern int disableitalic;
-extern int disableroman;

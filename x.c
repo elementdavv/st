@@ -164,6 +164,7 @@ typedef struct {
 	int descent;
 	int badslant;
 	int badweight;
+	int badslantweight;
 	short lbearing;
 	short rbearing;
 	XftFont *match;
@@ -1077,23 +1078,51 @@ xloadfonts(const char *fontstr, double fontsize)
 	win.ch = ceilf(dc.font.height * chscale);
 	win.cyo = ceilf(dc.font.height * (chscale - 1) / 2);
 
-	FcPatternDel(pattern, FC_SLANT);
-	if (!disableitalic)
+	if (!disableitalic && !disablebold) {
+		FcPatternDel(pattern, FC_SLANT);
+		FcPatternDel(pattern, FC_WEIGHT);
 		FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ITALIC);
-	if (xloadfont(&dc.ifont, pattern))
-		die("can't open font %s\n", fontstr);
-
-	FcPatternDel(pattern, FC_WEIGHT);
-	if (!disablebold)
 		FcPatternAddInteger(pattern, FC_WEIGHT, FC_WEIGHT_BOLD);
-	if (xloadfont(&dc.ibfont, pattern))
-		die("can't open font %s\n", fontstr);
+		if (xloadfont(&dc.ibfont, pattern)) {
+			fprintf(stderr, "can't open font italic bold %s\n", fontstr);
+			dc.ibfont = dc.font;
+			dc.ibfont.badslantweight = 1;
+		}
+	}
+	else {
+		dc.ibfont = dc.font;
+		dc.ibfont.badslantweight = 1;
+	}
 
-	// FcPatternDel(pattern, FC_SLANT);
-	if (!disableroman)
-		FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ROMAN);
-	if (xloadfont(&dc.bfont, pattern))
-		die("can't open font %s\n", fontstr);
+	if (!disableitalic) {
+		FcPatternDel(pattern, FC_SLANT);
+		FcPatternDel(pattern, FC_WEIGHT);
+		FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ITALIC);
+		if (xloadfont(&dc.ifont, pattern)) {
+			fprintf(stderr, "can't open font italic %s\n", fontstr);
+			dc.ifont = dc.font;
+			dc.ifont.badslant = 1;
+		}
+	}
+	else {
+		dc.ifont = dc.font;
+		dc.ifont.badslant = 1;
+	}
+
+	if (!disablebold) {
+		FcPatternDel(pattern, FC_SLANT);
+		FcPatternDel(pattern, FC_WEIGHT);
+		FcPatternAddInteger(pattern, FC_WEIGHT, FC_WEIGHT_BOLD);
+		if (xloadfont(&dc.bfont, pattern)) {
+			fprintf(stderr, "can't open font bold %s\n", fontstr);
+			dc.bfont = dc.font;
+			dc.bfont.badweight = 1;
+		}
+	}
+	else {
+		dc.bfont = dc.font;
+		dc.bfont.badweight = 1;
+	}
 
 	FcPatternDestroy(pattern);
 }
@@ -1212,10 +1241,16 @@ xunloadfonts(void)
 	while (frclen > 0)
 		XftFontClose(xw.dpy, frc[--frclen].font);
 
+	if (&dc.ibfont != &dc.font)
+	 	xunloadfont(&dc.ibfont);
+
+	if (&dc.ifont != &dc.font)
+	 	xunloadfont(&dc.ifont);
+
+	if (&dc.bfont != &dc.font)
+	 	xunloadfont(&dc.bfont);
+
 	xunloadfont(&dc.font);
-	xunloadfont(&dc.bfont);
-	xunloadfont(&dc.ifont);
-	xunloadfont(&dc.ibfont);
 }
 
 int
@@ -1606,7 +1641,7 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 
 	/* Fallback on color display for attributes not supported by the font */
 	if (base.mode & ATTR_ITALIC && base.mode & ATTR_BOLD) {
-		if (dc.ibfont.badslant || dc.ibfont.badweight)
+		if (dc.ibfont.badslantweight)
 			base.fg = defaultattr;
 	} else if ((base.mode & ATTR_ITALIC && dc.ifont.badslant) ||
 	    (base.mode & ATTR_BOLD && dc.bfont.badweight)) {

@@ -25,7 +25,7 @@ tic -sx st.info
 ```
 See the man page for additional details.
 
-### Configutaion
+### Configuraion
 st use xresources for customization. Edit `xresources` to suit your needs then run following commands to apply.
 ```bash
 xrdb -merge /path/to/xresources

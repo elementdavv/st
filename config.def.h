@@ -12,10 +12,9 @@ static char *font2[] = {
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
 };
 
-/* disable bold, italic and roman fonts globally */
+/* disable bold, italic fonts globally */
 int disablebold = 0;
 int disableitalic = 0;
-int disableroman = 0;
 
 static int borderpx = 0;
 
@@ -284,7 +283,6 @@ ResourcePref resources[] = {
 		{ "chscale",      FLOAT,   &chscale },
 		{ "disablebold",  INTEGER, &disablebold },
 		{ "disableitalic",INTEGER, &disableitalic },
-		{ "disableroman", INTEGER, &disableroman },
 		{ "boxdraw",      INTEGER, &boxdraw },
 		{ "boxdraw_bold", INTEGER, &boxdraw_bold },
 		{ "boxdraw_braille",INTEGER, &boxdraw_braille },
