@@ -1147,38 +1147,43 @@ static char *getcwd_by_pid(pid_t pid) {
 void
 kscrolldown(const Arg* a)
 {
+	if (term.scr <= 0)
+		return;
+
 	int n = a->i;
 
 	if (n < 0)
 		n = term.row + n;
-	else if (n > 0)
+	else if (n == 1)
 		n = mousescrollrate;
 
 	if (n > term.scr)
 		n = term.scr;
 
-	if (term.scr > 0) {
-		term.scr -= n;
-		selscroll(0, -n);
-		tfulldirt();
-	}
+	term.scr -= n;
+	selscroll(0, -n);
+	tfulldirt();
 }
 
 void
 kscrollup(const Arg* a)
 {
+	if (term.scr >= HISTSIZE) 
+		return;
+
 	int n = a->i;
 
 	if (n < 0)
 		n = term.row + n;
-	else if (n > 0)
+	else if (n == 1)
 		n = mousescrollrate;
 
-	if (term.scr <= HISTSIZE-n) {
-		term.scr += n;
-		selscroll(0, n);
-		tfulldirt();
-	}
+	if (n > HISTSIZE - term.scr)
+		n = HISTSIZE - term.scr;
+
+	term.scr += n;
+	selscroll(0, n);
+	tfulldirt();
 }
 
 void
