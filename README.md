@@ -9,12 +9,14 @@ This is a fork of [st](https://st.suckless.org/) with best predefined congifutai
 In order to build st you need the Xlib header files.
 
 ### Installation
+```bash
+git clone https://github.com/elementdavv/st.git
+cd st
+```
 Edit config.mk to match your local setup (st is installed into the ~/.local by default).
 
 Afterwards enter the following command to build and install st:
 ```bash
-git clone https://github.com/elementdavv/st.git
-cd st
 make clean install
 ```
 
@@ -86,7 +88,7 @@ st icon can be customized. Run following command to create new `icon.h` file the
 |key           |function                                                    |
 |:-------------|:-----------------------------------------------------------|
 |h, j, k, l    |move cursor left/down/up/right (also with arrow keys)		|
-|!, \_, *       |move cursor to the middle of the line/column/screen			|
+|!, \_, *      |move cursor to the middle of the line/column/screen			|
 |Backspace, $  |move cursor to the beginning/end of the line				|
 |PgUp, PgDown  |move cursor to the beginning/end of the column				|
 |Home, End     |move cursor to the top/bottom left corner of the screen		|
