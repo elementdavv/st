@@ -1,6 +1,6 @@
 ! default resource settings for st
 
-!st.font:             DejaVuSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true
+! st.font:             DejaVuSansMono Nerd Font:pixelsize=14:antialias=true:autohint=true
 
 ! font decoration
 st.disablebold:      0

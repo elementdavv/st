@@ -2841,7 +2841,6 @@ run:
 	return 0;
 }
 
-inline void IGUR() {}
 void
 opencopied(const Arg *arg)
 {
@@ -2858,5 +2857,5 @@ opencopied(const Arg *arg)
 	char cmd[cmd_size];
 
 	snprintf(cmd, cmd_size, "%s \"%s\"&", (char *)arg->v, clip);
-	IGUR(system(cmd));
+	system(cmd);
 }

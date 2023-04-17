@@ -1,36 +1,22 @@
 # st
 
-### Introduction
-This is a fork of [st](https://st.suckless.org/) with best predefined congifutaions.
-
+## Introduction
 [st](https://st.suckless.org/) is a simple terminal emulator for X which sucks less.
 
-### Requirement
-In order to build st you need the Xlib header files.
+This is a fork of [st](https://git.suckless.org/st), based on 2021-08-24 sources, with many useful patches from [patches](https://st.suckless.org/patches) applied.
 
-### Installation
+## Installation
 ```bash
 git clone https://github.com/elementdavv/st.git
 cd st
 ```
-Edit config.mk to match your local setup (st is installed into the ~/.local by default).
+In order to build st you need the Xlib header files.
 
-Afterwards enter the following command to build and install st:
+Edit config.mk to match your local setup (By default st is installed into the ~/.local).
+
+Then enter the following command to build and install st:
 ```bash
 make clean install
-```
-
-### Running st
-If you did not install st with make clean install, you must compile the st terminfo entry with the following command:
-```bash
-tic -sx st.info
-```
-See the man page for additional details.
-
-### Configuraion
-st use xresources for customization. Edit `xresources` to suit your needs then run following commands to apply.
-```bash
-xrdb -merge /path/to/xresources
 ```
 
 st icon can be customized. Run following command to create new `icon.h` file then recompile project.
@@ -38,7 +24,12 @@ st icon can be customized. Run following command to create new `icon.h` file the
 ./netwmicon.sh /path/to/youricon.png > icon.h
 ```
 
-### Patches activated
+## Usage
+st use xresources for customization. Edit `xresources` to suit your needs then run following commands to apply.
+```bash
+xrdb -merge /path/to/xresources
+```
+## Patches applied
 - alpha
 - anygeometry
 - blinking cursor
@@ -61,6 +52,7 @@ st icon can be customized. Run following command to create new `icon.h` file the
 - vertcenter
 - xresources
 
+## Help
 ### Keyboard shortcuts
 |key                    |function               |
 |:----------------------|:----------------------|
