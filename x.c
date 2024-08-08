@@ -18,8 +18,8 @@
 
 char *argv0;
 #include "arg.h"
-#include "icon.h"
 #include "win.h"
+#include "icon.h"
 #include "hb.h"
 
 /* types used in config.h */
@@ -130,7 +130,8 @@ typedef struct {
 	Window win;
 	Drawable buf;
 	GlyphFontSpec *specbuf; /* font spec buffer used for rendering */
-	Atom xembed, wmdeletewin, netwmname, netwmiconname, netwmicon, netwmpid;
+	Atom xembed, wmdeletewin, netwmname, netwmiconname, netwmpid;
+    Atom netwmicon;
 	struct {
 		XIM xim;
 		XIC xic;
@@ -903,8 +904,8 @@ xclear(int x1, int y1, int x2, int y2)
 void
 xhints(void)
 {
-	XClassHint class = {opt_name ? opt_name : "st",
-	                    opt_class ? opt_class : "St"};
+	XClassHint class = {opt_name ? opt_name : termname,
+	                    opt_class ? opt_class : termname};
 	XWMHints wm = {.flags = InputHint, .input = 1};
 	XSizeHints *sizeh;
 
@@ -2655,7 +2656,7 @@ run(void)
 
 		/* idle detected or maxlatency exhausted -> draw */
 		timeout = -1;
-		if (blinktimeout && (cursorblinks || tattrset(ATTR_BLINK))) {
+		if (blinktimeout && (tattrset(ATTR_BLINK) || cursorblinks)) {
 			timeout = blinktimeout - TIMEDIFF(now, lastblink);
 			if (timeout <= 0) {
 				if (-timeout > blinktimeout) /* start visible */
@@ -2857,5 +2858,7 @@ opencopied(const Arg *arg)
 	char cmd[cmd_size];
 
 	snprintf(cmd, cmd_size, "%s \"%s\"&", (char *)arg->v, clip);
-	system(cmd);
+	int sysret = system(cmd);
+    if (sysret == -1) {
+    }
 }

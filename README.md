@@ -3,7 +3,7 @@
 ## Introduction
 [st](https://st.suckless.org/) is a simple terminal emulator for X which sucks less.
 
-This is a fork of [st](https://git.suckless.org/st), based on 2021-08-24 sources, with many useful patches from [patches](https://st.suckless.org/patches) applied.
+This is a fork of [st](https://git.suckless.org/st), based on 2021-08-24 sources(version 0.8.4), with many useful patches from [patches](https://st.suckless.org/patches) applied.
 
 ## Installation
 ```bash
@@ -16,6 +16,7 @@ Edit config.mk to match your local setup (By default st is installed into the ~/
 
 Then enter the following command to build and install st:
 ```bash
+export CC=/usr/bin/gcc
 make clean install
 ```
 

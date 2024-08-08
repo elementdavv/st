@@ -43,7 +43,7 @@
 #define ISCONTROLC0(c)		(BETWEEN(c, 0, 0x1f) || (c) == 0x7f)
 #define ISCONTROLC1(c)		(BETWEEN(c, 0x80, 0x9f))
 #define ISCONTROL(c)		(ISCONTROLC0(c) || ISCONTROLC1(c))
-#define ISDELIM(u)			(u && wcschr(worddelimiters, u))
+#define ISDELIM(u)		(u && wcschr(worddelimiters, u))
 #define TLINE(y)			((y) < term.scr ? term.hist[((y) + term.histi - \
 							term.scr + HISTSIZE + 1) % HISTSIZE] : \
 							term.line[(y) - term.scr])
@@ -1210,8 +1210,7 @@ tscrolldown(int orig, int n, int copyhist)
 		term.line[i-n] = temp;
 	}
 
-	if (term.scr == 0)
-		selscroll(orig, n);
+	if (term.scr == 0) selscroll(orig, n);
 }
 
 void
@@ -1241,8 +1240,7 @@ tscrollup(int orig, int n, int copyhist)
 		term.line[i+n] = temp;
 	}
 
-	if (term.scr == 0)
-		selscroll(orig, -n);
+	if (term.scr == 0) selscroll(orig, -n);
 }
 
 void
